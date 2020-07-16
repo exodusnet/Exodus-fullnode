@@ -1,0 +1,119 @@
+##
+## zeroc's configuration which is used to generate individual zeroc file format
+##
+
+zeroc: | 
+    Ice.ThreadPool.Client.SizeMax = 10                              
+    Ice.ThreadPool.Server.SizeMax = 10                              
+    Ice.MessageSizeMax = 1000000   
+
+##
+## seed and fullnode 
+##
+
+seed: 
+    pubIP: &seedPubIP 192.168.207.129           ## "myself.pubIP=192.168.207.129"
+    gossipPort: &seedGossipPort 35791           ## "myself.gossipPort=35791"
+    rpcPort: &seedRpcPort 35792                 ## "myself.rpcPort=35792"
+    httpPort: &seedHttpPort 35793               ## "myself.httpPort=35793"
+    shardSize: 1                                ## "-Dshard.size=1" in the command line    
+    shardNodeSize: 4                            ## "-Dshard.node.size=4" in the command line       
+    static: 1                                   ## "-Dsharding.static=1" in the command line 
+    whitelist:                                  ## "Config" class's "WHITE_LIST"
+        - 192.168.207.129
+        - 172.17.2.118    
+    
+fullnode:
+    pubIP: 192.168.207.129                      ## "myself.pubIP=192.168.207.129"
+    gossipPort: 35791                           ## "myself.gossipPort=35791"
+    rpcPort: 35792                              ## "myself.rpcPort=35792"
+    httpPort: 35793                             ## "myself.httpPort=35793"
+    prefix: 0                                   ## "-Dtest.prefix=0" in the command line
+    shardSize: 1                                ## "-Dshard.size=1" in the command line    
+    shardNodeSize: 4                            ## "-Dshard.node.size=4" in the command line       
+    static: 1                                   ## "-Dsharding.static=1" in the command line  
+    whitelist:                                  ## "Config" class's "WHITE_LIST"
+        - 192.168.207.129
+        - 172.17.2.118        
+         
+
+##
+## anything in regard to localfullnode2 
+##
+
+localfullnode2: 
+    pubIP: 192.168.207.129                      ## "myself.pubIP=192.168.207.129"
+    gossipPort: 35791                           ## "myself.gossipPort=35791"
+    rpcPort: 35792                              ## "myself.rpcPort=35792"
+    httpPort: 35793                             ## "myself.httpPort=35793"
+    prefix: 3                                   ## "-Dtest.prefix=3" in the command line
+    chroniclePort: 36791                        ## specify chronicle service port
+    whitelist:                                  ## "Config" class's "WHITE_LIST"
+        - 192.168.207.129
+        - 172.17.2.118
+        
+    seedPubIP: *seedPubIP                       ## a reference to seed's pubIP
+    seedGossipPort: *seedGossipPort             ## a reference to seed's gossipPort
+    seedRpcPort: *seedRpcPort                   ## a reference to seed's rpcPort
+    seedHttpPort: *seedHttpPort                 ## a reference to seed's httpPort    
+                                                ## multiple mysql connection(located in db.properties)
+    dbConnectionDescriptors:    
+        -
+            url: "spring.datasource.url0_0=jdbc:mysql://localhost:3306/main0_0?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_0=root"
+            pw: "spring.datasource.password0_0=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="
+        -
+            url: "spring.datasource.url0_1=jdbc:mysql://localhost:3306/main0_1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_1=root"
+            pw: "spring.datasource.password0_1=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="
+        -
+            url: "spring.datasource.url0_2=jdbc:mysql://localhost:3306/main0_2?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_2=root"
+            pw: "spring.datasource.password0_2=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="
+        -
+            url: "spring.datasource.url0_3=jdbc:mysql://localhost:3306/main0_3?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_3=root"
+            pw: "spring.datasource.password0_3=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="                        
+        -
+            url: "spring.datasource.url0_4=jdbc:mysql://localhost:3306/main0_4?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_4=root"
+            pw: "spring.datasource.password0_4=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="
+        -                        
+            url: "spring.datasource.url0_5=jdbc:mysql://localhost:3306/main0_5?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_5=root"
+            pw: "spring.datasource.password0_5=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="
+        -
+            url: "spring.datasource.url0_6=jdbc:mysql://localhost:3306/main0_6?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_6=root"
+            pw: "spring.datasource.password0_6=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="
+        -
+            url: "spring.datasource.url0_7=jdbc:mysql://localhost:3306/main0_7?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_7=root"
+            pw: "spring.datasource.password0_7=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="
+        -
+            url: "spring.datasource.url0_8=jdbc:mysql://localhost:3306/main0_8?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_8=root"
+            pw: "spring.datasource.password0_8=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="                        
+        -
+            url: "spring.datasource.url0_9=jdbc:mysql://localhost:3306/main0_9?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8"
+            un: "spring.datasource.username0_9=root"
+            pw: "spring.datasource.password0_9=pyLbUlw7m0Jqn9w4K1H8yGjod6hsnsGlNDpU9wG3U4iSASHLFTs7XmsCxyjMOWW0Ga7PrGeY4MaEmixuEEXpHvmzF1u4okE5Jewte6JyQ68wr+KrDMeCjSZjMJuE9FhaCfxZ6N+PzMkCYPAGFVYJYzxgsd7GLLHMZUKwHzE1AjM="
+
+
+
+##        
+## anything in regard to p2p  
+##
+      
+p2pcluster:                 
+    icport: 43013                               ## "-Dp2pcluster.icport=43013" in the command line
+
+##    
+## using System.setProperty(key,value)  
+##
+  
+env: 
+    p2pcluster.icport: 43013                    ## "-Dp2pcluster.icport=43013" in the command line 
+    database.reset: false                       ## "-Ddatabase.reset=false" in the command line
+    test.prefix: 3                              ## "-Dtest.prefix=3" in the command line
+    io.netty.leakDetectiontionLevel: advanced   ## "-Dio.netty.leakDetectiontionLevel=advanced" in the command line
