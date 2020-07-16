@@ -1,0 +1,18 @@
+
+zeroc: | 
+    Ice.ThreadPool.Client.SizeMax = 10                              
+    Ice.ThreadPool.Server.SizeMax = 10                              
+    Ice.MessageSizeMax = 1000000   
+
+
+seed: 
+    pubIP: &seedPubIP 192.168.207.130           
+    gossipPort: &seedGossipPort 35791           
+    rpcPort: &seedRpcPort 35792                 
+    httpPort: &seedHttpPort 35793               
+    shardSize: 1                                
+    shardNodeSize: 4                            
+    static: 1                                   
+    whitelist:                                  
+        - 192.168.207.130
+        - 172.17.2.118  

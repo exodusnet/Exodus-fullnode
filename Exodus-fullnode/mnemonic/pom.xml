@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.exodus</groupId>
+    <artifactId>mnemonic</artifactId>
+    <version>1.1.0</version>
+    <packaging>jar</packaging>
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>chenhan</id>-->
+            <!--<name>chenhan</name>-->
+            <!--<url>http://120.79.76.218:8081/repository/chenhan/</url>-->
+        <!--</repository>-->
+    <!--</distributionManagement>-->
+
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.8</jdk.version>
+        <junit.version>4.12</junit.version>
+        <junit-jupiter.version>5.0.3</junit-jupiter.version>
+        <bitcoinj-core.version>0.14.7</bitcoinj-core.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <commons-codec.version>1.10</commons-codec.version>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <fastjson.version>1.2.7</fastjson.version>
+        <com.beust.version>1.72</com.beust.version>
+        <keccakj.version>1.1.0</keccakj.version>
+        <JNI.version>1.4.0</JNI.version>
+        <springcore.version>5.0.7.RELEASE</springcore.version>
+        <commons-io.version>2.5</commons-io.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <com.madgag.spongycastle.version>1.51.0.0</com.madgag.spongycastle.version>
+        <org.bitcoinj.orchid.version>1.2.1</org.bitcoinj.orchid.version>
+        <log4j.version>2.6.2</log4j.version>
+        <exception.version>1.0.0</exception.version>
+        <plexus-compiler-javac.version>2.8.2</plexus-compiler-javac.version>
+    </properties>
+
+    <dependencies>
+        <!--base64 编码使用-->
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-compiler-javac</artifactId>
+            <version>${plexus-compiler-javac.version}</version>
+        </dependency>
+        <!--异常管理-->
+        <dependency>
+            <groupId>org.exodus</groupId>
+            <artifactId>exception</artifactId>
+            <version>${exception.version}</version>
+        </dependency>
+
+        <!--日志管理-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!-- 流加载-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${springcore.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--JSON工具-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <version>${com.beust.version}</version>
+        </dependency>
+
+        <!--sha3  hash算法依赖-->
+        <!--<dependency>-->
+            <!--<groupId>commons-codec</groupId>-->
+            <!--<artifactId>commons-codec</artifactId>-->
+            <!--<version>1.9</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.github.aelstad</groupId>-->
+            <!--<artifactId>keccakj</artifactId>-->
+            <!--<version>${keccakj.version}</version>-->
+        <!--</dependency>-->
+
+        <!--加载Dll文件-->
+        <dependency>
+            <groupId>com.sun.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>3.0.9</version>
+        </dependency>
+        <!--比特币核心算法-->
+        <dependency>
+            <groupId>org.bitcoinj</groupId>
+            <artifactId>bitcoinj-core</artifactId>
+            <version>${bitcoinj-core.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--RIPEMD160Digest-->
+        <!--<dependency>-->
+            <!--<groupId>com.madgag.spongycastle</groupId>-->
+            <!--<artifactId>core</artifactId>-->
+            <!--<version>${com.madgag.spongycastle.version}</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;base32&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.bitcoinj</groupId>-->
+            <!--<artifactId>orchid</artifactId>-->
+            <!--<version>${org.bitcoinj.orchid.version}</version>-->
+        <!--</dependency>-->
+        <!--web3j工具-->
+        <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>utils</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+        </plugin>
+		<!--
+        <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+                <appendAssemblyId>false</appendAssemblyId>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <useUniqueVersions>false</useUniqueVersions>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>lib/</classpathPrefix>
+                    </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>assembly</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+		-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-jar-plugin</artifactId>-->
+                <!--<version>2.6</version>-->
+                <!--<configuration>-->
+                    <!--<archive>-->
+                        <!--<manifest>-->
+                            <!--<addClasspath>true</addClasspath>-->
+                            <!--<classpathPrefix>lib/</classpathPrefix>-->
+                            <!--<mainClass>one.inve.mnemonic.UserRegister</mainClass>-->
+                        <!--</manifest>-->
+                    <!--</archive>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-dependency-plugin</artifactId>-->
+                <!--<version>2.10</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>copy-dependencies</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>copy-dependencies</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<outputDirectory>lib/</outputDirectory>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+
+
+            <!--  打包-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-assembly-plugin</artifactId>-->
+                <!--<version>2.5.5</version>-->
+                <!--<configuration>-->
+                    <!--<archive>-->
+                        <!--<manifest>-->
+                            <!--<mainClass>one.inve.mnemonic.UserRegister</mainClass>-->
+                        <!--</manifest>-->
+                    <!--</archive>-->
+                    <!--<descriptorRefs>-->
+                        <!--<descriptorRef>jar-with-dependencies</descriptorRef>-->
+                    <!--</descriptorRefs>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>make-assembly</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>single</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+
+
+
+
+        </plugins>
+    </build>
+</project>
