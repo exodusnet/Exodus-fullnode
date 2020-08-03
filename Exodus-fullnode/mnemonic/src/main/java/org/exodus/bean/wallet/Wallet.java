@@ -1,101 +1,129 @@
 package org.exodus.bean.wallet;
 
+import org.exodus.mnemonic.Mnemonic;
+import org.exodus.utils.DSA;
+
 /**
  * 钱包
+ * 
  * @author Clare
- * @date   2018/6/10.
+ * @date 2018/6/10.
  */
 public class Wallet {
-    /**
-     * 助记词
-     */
-    public String mnemonic;
-    /**
-     * 收款地址
-     */
-    public String address;
-    /**
-     * 主密钥对
-     */
-    public Keys keys;
-    /**
-     * 扩展密钥对
-     */
-    public Keys extKeys;
+	/**
+	 * 助记词
+	 */
+	public String mnemonic;
+	/**
+	 * 收款地址
+	 */
+	public String address;
+	/**
+	 * 主密钥对
+	 */
+	public Keys keys;
+	/**
+	 * 扩展密钥对
+	 */
+	public Keys extKeys;
 
-    public Wallet() {
-    }
+	public Wallet() {
+	}
 
-    private Wallet(Builder builder) {
-        setMnemonic(builder.mnemonic);
-        setAddress(builder.address);
-        setKeys(builder.keys);
-        setExtKeys(builder.extKeys);
-    }
+	private Wallet(Builder builder) {
+		setMnemonic(builder.mnemonic);
+		setAddress(builder.address);
+		setKeys(builder.keys);
+		setExtKeys(builder.extKeys);
+	}
 
-    public String getMnemonic() {
-        return mnemonic;
-    }
+	public String getMnemonic() {
+		return mnemonic;
+	}
 
-    public void setMnemonic(String mnemonic) {
-        this.mnemonic = mnemonic;
-    }
+	public void setMnemonic(String mnemonic) {
+		this.mnemonic = mnemonic;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public Keys getKeys() {
-        return keys;
-    }
+	public Keys getKeys() {
+		return keys;
+	}
 
-    public void setKeys(Keys keys) {
-        this.keys = keys;
-    }
+	public void setKeys(Keys keys) {
+		this.keys = keys;
+	}
 
-    public Keys getExtKeys() {
-        return extKeys;
-    }
+	public Keys getExtKeys() {
+		return extKeys;
+	}
 
-    public void setExtKeys(Keys extKeys) {
-        this.extKeys = extKeys;
-    }
+	public void setExtKeys(Keys extKeys) {
+		this.extKeys = extKeys;
+	}
 
-    public static final class Builder {
-        private String mnemonic;
-        private String address;
-        private Keys keys;
-        private Keys extKeys;
+	public String getPriKey() {
+		Mnemonic meno;
+		try {
+			meno = new Mnemonic(mnemonic, "");
+			return DSA.encryptBASE64(meno.getxPrivKey());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        public Builder() {
-        }
+		throw new RuntimeException("failed to retrieve private key");
+	}
 
-        public Builder mnemonic(String val) {
-            mnemonic = val;
-            return this;
-        }
+	public String getPubKey() {
+		Mnemonic meno;
+		try {
+			meno = new Mnemonic(mnemonic, "");
+			return DSA.encryptBASE64(meno.getPubKey());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        public Builder address(String val) {
-            address = val;
-            return this;
-        }
+		throw new RuntimeException("failed to retrieve public key");
+	}
 
-        public Builder keys(Keys val) {
-            keys = val;
-            return this;
-        }
+	public static final class Builder {
+		private String mnemonic;
+		private String address;
+		private Keys keys;
+		private Keys extKeys;
 
-        public Builder extKeys(Keys val) {
-            extKeys = val;
-            return this;
-        }
+		public Builder() {
+		}
 
-        public Wallet build() {
-            return new Wallet(this);
-        }
-    }
+		public Builder mnemonic(String val) {
+			mnemonic = val;
+			return this;
+		}
+
+		public Builder address(String val) {
+			address = val;
+			return this;
+		}
+
+		public Builder keys(Keys val) {
+			keys = val;
+			return this;
+		}
+
+		public Builder extKeys(Keys val) {
+			extKeys = val;
+			return this;
+		}
+
+		public Wallet build() {
+			return new Wallet(this);
+		}
+	}
 }
