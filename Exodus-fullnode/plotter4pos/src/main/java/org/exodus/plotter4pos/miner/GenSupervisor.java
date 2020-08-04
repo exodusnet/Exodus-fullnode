@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import org.exodus.plotter4pos.util.Convert;
 import org.exodus.plotter4pos.util.MiningPlot;
 
 import akka.actor.AbstractActor;
@@ -13,6 +14,16 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import akka.routing.RoundRobinPool;
 
+/**
+ * 
+ * Copyright © exodus. All rights reserved.
+ * 
+ * @ClassName: GenSupervisor
+ * @Description: coordinate plotting process with the help of others
+ * @author Francis.Deng [francis_xiiiv@163.com]
+ * @date Aug 4, 2020
+ *
+ */
 public class GenSupervisor extends AbstractActor {
 	private LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 
@@ -22,6 +33,8 @@ public class GenSupervisor extends AbstractActor {
 	private long currentNonce;
 	private long recvresults;
 	private byte[] outbuffer;
+
+	private long generatedBytesAmount = 0;
 
 	FileOutputStream out;
 
@@ -42,14 +55,18 @@ public class GenSupervisor extends AbstractActor {
 			if (recvresults >= staggeramt) {
 				System.out.println("Writing from nonce " + currentNonce);
 				out.write(outbuffer);
+				generatedBytesAmount += outbuffer.length;
 				currentNonce += staggeramt;
 
 				if (currentNonce < startnonce + plots) {
 					sendWork();
 				} else {
 					out.close();
-					log.info("starting terminating...");
-					getContext().system().terminate();
+//					log.info("starting terminating...");
+//					getContext().system().terminate();
+
+					ActorRef reporter = getContext().actorOf(Props.create(PlotReporter.class));
+					reporter.tell(new msgPlantResult(condition.address, generatedBytesAmount), this.getSelf());
 				}
 			}
 		}).build();
@@ -111,16 +128,29 @@ public class GenSupervisor extends AbstractActor {
 	}
 
 	public static class GenParams {
+		public String address;
 		public long addr;
 		public long startnonce;
 		public long plots;
 		public long staggeramt;
 
-		public GenParams(long addr, long startnonce, long plots, long staggeramt) {
-			this.addr = addr;
+		public GenParams(String address, long startnonce, long plots, long staggeramt) {
+			this.address = address;
+
+			this.addr = Convert.fullHashToId(address.getBytes());
 			this.startnonce = startnonce;
 			this.plots = plots;
 			this.staggeramt = staggeramt;
+		}
+	}
+
+	public static class msgPlantResult {
+		public long generatedBytesAmount;
+		public String address;
+
+		public msgPlantResult(String address, long generatedBytesAmount) {
+			this.address = address;
+			this.generatedBytesAmount = generatedBytesAmount;
 		}
 	}
 

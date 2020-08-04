@@ -71,8 +71,8 @@ public class Miner {
 			Wallet wallet = localWalletBuilder.build("plots/" + ".passphrases");
 
 			ActorSystem system = ActorSystem.create();
-			ActorRef gensupr = system.actorOf(Props.create(GenSupervisor.class, new GenSupervisor.GenParams(
-					Convert.fullHashToId(wallet.getPubKey().getBytes()), startnonce, plots, staggeramt)));
+			ActorRef gensupr = system.actorOf(Props.create(GenSupervisor.class,
+					new GenSupervisor.GenParams(wallet.getAddress(), startnonce, plots, staggeramt)));
 		} catch (Exception e) {
 			e.printStackTrace();
 
