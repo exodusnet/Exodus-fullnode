@@ -19,11 +19,17 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class LocalWalletBuilder {
 	public Wallet build(String location) throws Exception {
+
+		return build(location, true);
+	}
+
+	public Wallet build(String location, boolean createIfNotExisted) throws Exception {
 		File loc = new File(location);
 		Wallet w = null;
 
 		if (!loc.exists()) {// brand new case
-			w = buildNewWallet(loc);
+			if (createIfNotExisted)
+				w = buildNewWallet(loc);
 		} else {
 			w = loadWallet(loc);
 		}
