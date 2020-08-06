@@ -62,11 +62,11 @@ public class GenSupervisor extends AbstractActor {
 					sendWork();
 				} else {
 					out.close();
-//					log.info("starting terminating...");
-//					getContext().system().terminate();
+					log.info("starting terminating...");
+					getContext().system().terminate();
 
-					ActorRef reporter = getContext().actorOf(Props.create(PlotReporter.class));
-					reporter.tell(new msgPlantResult(condition.address, generatedBytesAmount), this.getSelf());
+//					ActorRef reporter = getContext().actorOf(Props.create(PlotReporter.class));
+//					reporter.tell(new msgPlantResult(condition.address, generatedBytesAmount), this.getSelf());
 				}
 			}
 		}).build();
@@ -141,16 +141,6 @@ public class GenSupervisor extends AbstractActor {
 			this.startnonce = startnonce;
 			this.plots = plots;
 			this.staggeramt = staggeramt;
-		}
-	}
-
-	public static class msgPlantResult {
-		public long generatedBytesAmount;
-		public String address;
-
-		public msgPlantResult(String address, long generatedBytesAmount) {
-			this.address = address;
-			this.generatedBytesAmount = generatedBytesAmount;
 		}
 	}
 

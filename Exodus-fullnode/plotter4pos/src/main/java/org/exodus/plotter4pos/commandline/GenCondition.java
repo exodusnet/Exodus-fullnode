@@ -4,11 +4,11 @@ public class GenCondition {
 	// @Param("address")
 	// private String address;
 	@Param("startNonce")
-	private String startNonce;
+	private String startNonce = "20";
 	@Param("plots")
-	private String plots;
+	private String plots = "10";
 	@Param("staggeramt")
-	private String staggeramt;
+	private String staggeramt = "1";
 
 	// for testing
 	public GenCondition(String startNonce, String plots, String staggeramt) {

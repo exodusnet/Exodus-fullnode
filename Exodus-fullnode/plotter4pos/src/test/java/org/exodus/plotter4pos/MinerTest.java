@@ -3,18 +3,18 @@ package org.exodus.plotter4pos;
 import org.junit.Test;
 
 public class MinerTest {
-
-	@Test
+	// @Test
 	public void testStartGeneration() {
 		String[] args = { "generate", "--startNonce", "50", "--plots", "50", "--staggeramt", "1" };
 
 		Miner.main(args);
-
-//		try {
-//			Thread.sleep(60000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
+
+	@Test
+	public void testStartMineing() {
+		String[] args = { "mine" };
+
+		Miner.main(args);
+	}
+
 }
