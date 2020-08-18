@@ -3,7 +3,7 @@ package org.exodus.cfg.core;
 /**
  * 
  * 
- *  All rights reserved.
+ * All rights reserved.
  * 
  * @Description: TODO
  * @author: Francis.Deng [francis_xiiiv@163.com]
@@ -18,6 +18,6 @@ public interface ICurrencyConfigurationReader {
 
 	public static ICurrencyConfigurationReader getDefaultImpl() {
 		return (ICurrencyConfigurationReader) ReflectionUtils
-				.getInstanceByClassName("org.exodus.cfg.core.InterValueYamlReader");
+				.getInstanceByClassName("org.exodus.cfg.core.CurrencyYamlReader");
 	}
 }
