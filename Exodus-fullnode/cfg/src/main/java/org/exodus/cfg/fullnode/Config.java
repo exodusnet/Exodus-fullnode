@@ -14,7 +14,7 @@ public class Config {
 
 	public static final int DEFAULT_SHARD_SIZE = 1;
 	public static final int DEFAULT_SHARD_NODE_SIZE = 4;
-	public static final int DEFAULT_NEIGHBOR_SIZE = 10;
+	public static final int DEFAULT_NEIGHBOR_SIZE = 4;
 
 	public static final int DEFAULT_STATISTICS_INTERVAL = 5000;
 	public static final int DEFAULT_STATISTICS_BATCHES = 20000;
