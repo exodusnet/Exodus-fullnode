@@ -20,7 +20,7 @@ java -jar plotter4pos-0.0.1-SNAPSHOT.jar [generate [...]|dumpwords|mine]
 java -jar plotter4pos-0.0.1-SNAPSHOT.jar generate --plots [size]
 ```
 
-*** the size of occupied disk space = 256k multiply [size]^2 ***
+** the size of occupied disk space = 256k multiply [size]^2 **
 
 for example:
 occupy disk space of 100m
