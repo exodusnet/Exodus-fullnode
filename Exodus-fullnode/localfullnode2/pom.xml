@@ -449,7 +449,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>one.inve.localfullnode2.nodes.Localfullnode2</mainClass>
+							<mainClass>org.exodus.localfullnode2.nodes.Localfullnode2</mainClass>
 						</manifest>
 					</archive>
 			
