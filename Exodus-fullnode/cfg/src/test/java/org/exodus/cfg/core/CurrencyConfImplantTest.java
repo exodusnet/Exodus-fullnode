@@ -15,14 +15,14 @@ import org.exodus.cfg.localfullnode.Config;
  * @date: Sep 12, 2019 2:35:28 AM
  * @version: V1.0
  */
-public class InterValueConfImplantTest {
-	private static InterValueConfImplant implant;
+public class CurrencyConfImplantTest {
+	private static CurrencyConfImplant implant;
 
 	@BeforeClass
 	public static void init() {
 		String[] params = {
 				"intervalue_conf_file=/home/francis/workgroup/chxx/src/github.com/intervalue/intervalue-2.0.0-mainnet-rtm/localfullnode2/src/main/resources/intervalue.yaml.template" };
-		implant = new InterValueConfImplant();
+		implant = new CurrencyConfImplant();
 		implant.init(params);
 
 		DBConnectionDescriptorsConf desConf = implant.conf.getLocalfullnode2Conf().getDbConnection();

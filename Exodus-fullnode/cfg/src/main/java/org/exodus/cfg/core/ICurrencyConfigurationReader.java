@@ -9,15 +9,15 @@ package org.exodus.cfg.core;
  * @author: Francis.Deng [francis_xiiiv@163.com]
  * @date: Sep 11, 2019 11:37:45 PM
  * @version: V1.0
- * @see InterValueYamlReader
+ * @see CurrencyYamlReader
  */
-public interface IInterValueConfigurationReader {
+public interface ICurrencyConfigurationReader {
 	public static String INTERVALUE_CONF_FILE_VARIABLE_NAME = "intervalue_conf_file";
 
-	IInterValueConf read(String[] args);
+	ICurrencyConf read(String[] args);
 
-	public static IInterValueConfigurationReader getDefaultImpl() {
-		return (IInterValueConfigurationReader) ReflectionUtils
+	public static ICurrencyConfigurationReader getDefaultImpl() {
+		return (ICurrencyConfigurationReader) ReflectionUtils
 				.getInstanceByClassName("org.exodus.cfg.core.InterValueYamlReader");
 	}
 }

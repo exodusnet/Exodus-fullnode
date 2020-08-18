@@ -34,14 +34,14 @@ import org.exodus.cfg.localfullnode.NodeParameters;
  * @version: V1.3 add chroniclePort attribute inside localfullnode2 to support
  *           chronicle server
  */
-public class InterValueConfImplant implements IConfImplant {
-	private static final Logger logger = LoggerFactory.getLogger(InterValueConfImplant.class);
+public class CurrencyConfImplant implements IConfImplant {
+	private static final Logger logger = LoggerFactory.getLogger(CurrencyConfImplant.class);
 
-	IInterValueConf conf;
+	ICurrencyConf conf;
 
 	@Override
 	public void init(String[] args) {
-		IInterValueConfigurationReader configurationReader = IInterValueConfigurationReader.getDefaultImpl();
+		ICurrencyConfigurationReader configurationReader = ICurrencyConfigurationReader.getDefaultImpl();
 		conf = configurationReader.read(args);
 
 	}

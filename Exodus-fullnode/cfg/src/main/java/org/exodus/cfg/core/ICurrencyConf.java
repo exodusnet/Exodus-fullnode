@@ -12,7 +12,7 @@ import java.util.Map;
  * @date: Sep 12, 2019 2:31:30 AM
  * @version: V1.0
  */
-public interface IInterValueConf {
+public interface ICurrencyConf {
 	String getZerocContent();
 
 	ILocalfullnode2Conf getLocalfullnode2Conf();

@@ -27,12 +27,12 @@ import org.yaml.snakeyaml.Yaml;
  * @version: V1.0
  * @see intervalue.yaml.template
  */
-public class InterValueYamlReader implements IInterValueConfigurationReader {
-	private static final Logger logger = LoggerFactory.getLogger(InterValueYamlReader.class);
+public class CurrencyYamlReader implements ICurrencyConfigurationReader {
+	private static final Logger logger = LoggerFactory.getLogger(CurrencyYamlReader.class);
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public IInterValueConf read(String[] args) {
+	public ICurrencyConf read(String[] args) {
 		Yaml yaml = new Yaml();
 		InputStream is = null;
 		try {
@@ -44,7 +44,7 @@ public class InterValueYamlReader implements IInterValueConfigurationReader {
 
 		Map m = yaml.loadAs(is, Map.class);
 		// abandon the usage of bean classes
-		return new IInterValueConf() {
+		return new ICurrencyConf() {
 
 			@Override
 			public String getZerocContent() {
@@ -342,7 +342,7 @@ public class InterValueYamlReader implements IInterValueConfigurationReader {
 		for (int i = 0; i < args.length; i++) {
 			String p = args[i];
 
-			if (p.startsWith(IInterValueConfigurationReader.INTERVALUE_CONF_FILE_VARIABLE_NAME)) {
+			if (p.startsWith(ICurrencyConfigurationReader.INTERVALUE_CONF_FILE_VARIABLE_NAME)) {
 				String[] pair = p.split("=");
 				f = parsePath(pair[1]);
 			}
@@ -352,15 +352,15 @@ public class InterValueYamlReader implements IInterValueConfigurationReader {
 	}
 
 	protected File fromBootFolder() {
-		return parsePath(IInterValueConfigurationReader.INTERVALUE_CONF_FILE_VARIABLE_NAME + ".yaml");
+		return parsePath(ICurrencyConfigurationReader.INTERVALUE_CONF_FILE_VARIABLE_NAME + ".yaml");
 	}
 
 	protected File fromEnv() {
 		File f = null;
-		String confFile = System.getenv(IInterValueConfigurationReader.INTERVALUE_CONF_FILE_VARIABLE_NAME);
+		String confFile = System.getenv(ICurrencyConfigurationReader.INTERVALUE_CONF_FILE_VARIABLE_NAME);
 
 		if (confFile != null) {
-			f = parsePath(System.getenv(IInterValueConfigurationReader.INTERVALUE_CONF_FILE_VARIABLE_NAME));
+			f = parsePath(System.getenv(ICurrencyConfigurationReader.INTERVALUE_CONF_FILE_VARIABLE_NAME));
 		}
 		return f;
 	}
