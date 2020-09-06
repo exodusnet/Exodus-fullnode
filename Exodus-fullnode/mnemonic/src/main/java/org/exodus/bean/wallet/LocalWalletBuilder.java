@@ -23,18 +23,39 @@ public class LocalWalletBuilder {
 		return build(location, true);
 	}
 
+	public String buildMemWallet() throws Exception {
+		Wallet w = WalletBuilder.generateWallet();
+		String memWallet = null;
+
+		w = WalletBuilder.generateWallet();
+		memWallet = JSONObject.toJSONString(w);
+
+		return memWallet;
+	}
+
 	public Wallet build(String location, boolean createIfNotExisted) throws Exception {
 		File loc = new File(location);
 		Wallet w = null;
 
 		if (!loc.exists()) {// brand new case
-			if (createIfNotExisted)
+			if (createIfNotExisted) {
+				// loc.mkdirs();
+				buildParentFolder(loc);
 				w = buildNewWallet(loc);
+			}
+
 		} else {
 			w = loadWallet(loc);
 		}
 
 		return w;
+	}
+
+	private void buildParentFolder(File file) {
+		File folder = file.getParentFile();
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
 	}
 
 	private Wallet buildNewWallet(File file) throws Exception {
