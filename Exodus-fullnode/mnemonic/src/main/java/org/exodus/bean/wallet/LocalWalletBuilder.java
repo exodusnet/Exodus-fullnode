@@ -23,7 +23,7 @@ public class LocalWalletBuilder {
 		return build(location, true);
 	}
 
-	public String buildMemWallet() throws Exception {
+	public static String buildMemWallet() throws Exception {
 		Wallet w = WalletBuilder.generateWallet();
 		String memWallet = null;
 
@@ -31,6 +31,10 @@ public class LocalWalletBuilder {
 		memWallet = JSONObject.toJSONString(w);
 
 		return memWallet;
+	}
+
+	public static Wallet fromMemWallet(String memWallet) {
+		return JSONObject.parseObject(memWallet, Wallet.class);
 	}
 
 	public Wallet build(String location, boolean createIfNotExisted) throws Exception {
