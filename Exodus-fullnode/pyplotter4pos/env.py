@@ -14,8 +14,9 @@ import os
 reward_url = 'http://c-prod-1.exodusnetwork.io/reward'
 # reward_url = 'http://192.168.207.130:8080/reward'
 
-os = 'linux'
-# os = 'openwrt'
+# plat = 'linux'
+plat = 'openwrt'
+# plat = 'openwrt.m3'
 
 def getRoot():
     '''

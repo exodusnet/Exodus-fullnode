@@ -9,9 +9,9 @@
 '''
 
 import unittest
-# import util.shabal256 as shabal256
-import ctypes
-import binascii
+import util.shabal256 as shabal256
+# import ctypes
+# import binascii
 
 
 class TestShabal256(unittest.TestCase):
@@ -31,6 +31,7 @@ class TestShabal256(unittest.TestCase):
     #     print(shabal256.digestFromBytearray(y))
 
     def test_c(self):
+        '''
         hello = ctypes.c_char_p()
         hello.value = 'hello'.encode()
         r = ctypes.create_string_buffer(32)
@@ -42,6 +43,11 @@ class TestShabal256(unittest.TestCase):
         print(str(rVal))
         #print(rVal.hex())
         print(binascii.hexlify(rVal).decode()) # 6563a2d36f2f541e38aaa3f5375bfae8ce1dd2811cdf0993216669d48618aa9a
+        '''
+        print('str shabal256: ' + shabal256.digest('hello'))
+        self.assertEqual('6563a2d36f2f541e38aaa3f5375bfae8ce1dd2811cdf0993216669d48618aa9a', shabal256.digest('hello'))
+
+        print('from bytes:',shabal256.digestFromBytearray(b'\\xf0\\xf1\\xf2'))
 
 
 if __name__ == '__main__':

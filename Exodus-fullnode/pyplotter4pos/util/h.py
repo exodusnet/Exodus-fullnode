@@ -8,6 +8,7 @@
 '''
 
 import urllib
+import urllib.request
 
 
 class Http:

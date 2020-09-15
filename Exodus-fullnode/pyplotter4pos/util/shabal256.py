@@ -10,6 +10,8 @@
 
 
 # from py_sph_shabal import shabal256
+from util.compatibility import *
+import os
 
 
 def digest(str):
@@ -18,15 +20,17 @@ def digest(str):
     import binascii
     import env
 
-    libshabalSoName = './libshabal.' + env.os + '.so'
+    libshabalSoName = 'libshabal.' + env.plat + '.so'
+    libshabalSoName = os.path.join(os.path.dirname(__file__),libshabalSoName)
 
     charPointer = ctypes.c_char_p()
     charPointer.value = str.encode()
     r = ctypes.create_string_buffer(32)
 
-    libshabal = ctypes.cdll.LoadLibrary('./libshabal.linux.so')
+    libshabal = ctypes.cdll.LoadLibrary(libshabalSoName)
     libshabal.shabal256(charPointer, r)
     rVal = r.value
+
 
     return binascii.hexlify(rVal).decode()
 
@@ -42,5 +46,7 @@ def digestFromBytearray(bytearrayObj):
     '''
     b'\\xf0\\xf1\\xf2' => 'f0f1f2'  => fd9b8a9e996cd32b6ea7200db71011f31cb3a6be9e57f8f1b63009f6f00483e7
     '''
-    hexadecimalStr = bytearray(bytearrayObj).hex()
+    ## hexadecimalStr = bytearray(bytearrayObj).hex()
+    hexadecimalStr = bytes_hex(bytearray(bytearrayObj))
+
     return digest(str(hexadecimalStr))

@@ -81,6 +81,9 @@ class Miner():
             if self.newbest:
                 self.parent.onReceive(MsgBestResult(self.bestaddr, self.bestnonce, self.proof))
 
+            self.timer = Timer(30, self.onReceive, (MsgSendResults(),))
+            self.timer.start()
+
     def __getAllPlotFiles(self):
         import env
 

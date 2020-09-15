@@ -12,6 +12,8 @@ import struct
 import util.shabal256 as shabal256
 import util.ba as ba
 
+from util.compatibility import *
+
 
 class MiningPlot():
     HASH_SIZE = 32
@@ -41,7 +43,10 @@ class MiningPlot():
 
             i = i - MiningPlot.HASH_SIZE
 
-        finalHash = shabal256.digestFromBytearray(gendata)
+        ## finalHash = shabal256.digestFromBytearray(gendata)
+        strGendata = bytes_hex(gendata)
+        finalHash = shabal256.digest(strGendata[-1])
+
         finalHashHex = bytearray.fromhex(finalHash)
         for index in range(0, MiningPlot.PLOT_SIZE):
             self.data[index] = gendata[index] ^ finalHashHex[index % MiningPlot.HASH_SIZE]

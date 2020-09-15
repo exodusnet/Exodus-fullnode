@@ -37,6 +37,7 @@ def runMiner(argv):
         genSupervisor.init()
     elif action == 'mine':
         minerSupr = MinerSupr('')
+
         minerSupr.tick()
 
 if __name__ == '__main__':
