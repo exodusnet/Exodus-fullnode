@@ -57,7 +57,7 @@ class GenSupervisor():
         plots = self.condition.plots
 
         if self.__recvresults >= staggeramt:
-            print("Writing from nonce %d" % self.__currentNonce)
+            print("Writing from nonce %d" % self.__currentNonce, flush=True)
             len = self.__out.write(self.__outbuffer)
             self.__generatedBytesAmount = self.__generatedBytesAmount + len
             self.__currentNonce = self.__currentNonce + staggeramt

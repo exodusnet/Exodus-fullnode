@@ -16,8 +16,10 @@ from km.drill.miner_com import MsgGetBag
 from km.drill.miner_supr_msg import NetState
 from km.drill.miner_supr_msg import MsgGetBagResult
 from util.h import Http
+from util.rand import *
 
 from env import reward_url
+from os.path import join, getsize
 
 import os
 
@@ -49,8 +51,10 @@ class MinerSupr():
 
             data = {}
 
-            gensig = '1C532145697A8B6F'
-            string = 'abcdefgh'
+            # gensig = '1C532145697A8B6F'
+            # string = 'abcdefgh'
+            gensig = randHexStr(16)
+            string = randHexStr(8)
             bys = bytes(string, encoding="utf8")
             proof = str(bys, encoding="utf8")
             bag = self.bag()
@@ -58,11 +62,16 @@ class MinerSupr():
             data['gensig'] = gensig
             data['proof'] = message.proof
             data['bag'] = bag
+            data['space'] = self.space()
 
 
             newUrl = Http.newUrl(url,{'requestType':'participateinTaiSai'})
-            resp = Http.post(newUrl,data)
-            print('resp: %s' % resp)
+
+            try:
+                resp = Http.post(newUrl, data)
+                print('resp: %s' % resp)
+            except:
+                print('disconnected from ' + newUrl)
 
         elif type(message) == MsgGetBagResult:
             passphrasesDir = self.__getPassphrasesDir()
@@ -89,6 +98,13 @@ class MinerSupr():
             bg = pf.read()
 
         return bg
+
+    def space(self):
+        plotDir = self.__getPassphrasesDir()
+        size = 0
+        for root, dirs, files in os.walk(plotDir):
+            size += sum([getsize(join(root, name)) for name in files])
+        return size
 
     def __getPassphrasesDir(self):
         import env

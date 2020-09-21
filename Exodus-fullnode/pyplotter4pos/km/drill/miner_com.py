@@ -17,6 +17,8 @@ from util.convert import Convert
 from util.h import Http
 import json
 
+from util.rand import *
+
 from env import reward_url
 
 
@@ -26,8 +28,10 @@ class MinerCom():
 
     def onReceive(self, message):
         if type(message) == MsgRefreshNetState:
-            h = '11'
-            b = bytearray.fromhex('1C532145697A8B6F')
+            # h = '11'
+            # b = bytearray.fromhex('1C532145697A8B6F')
+            h = randInt(1,10000)
+            b = bytearray.fromhex(randHexStr(16))
             height = Convert.parseUnsignedLong(h)
             state = NetState(height, b)
             self.parent.onReceive(state)
